@@ -7,17 +7,17 @@ namespace ais_erp_proxy.Models
         public static ReceivedRequestData CheckAndGetDataFromRequest(HttpRequestMessage req)
         {
             ReceivedRequestData rsp_json = new ReceivedRequestData();
-           
+
             if (!req.Headers.Contains("ContentType"))
             {
                 rsp_json.status = false;
-                rsp_json.info = "ContentType is missing in your header [application/xml or application/json]";
+                rsp_json.info = "'ContentType' is missing in your header [application/xml or application/json]";
                 return rsp_json;
             }
             if (!req.Headers.Contains("Endpoint"))
             {
                 rsp_json.status = false;
-                rsp_json.info = "Endpoint is missing in your header";
+                rsp_json.info = "'Endpoint' is missing in your header";
                 return rsp_json;
             }
 
@@ -30,7 +30,7 @@ namespace ais_erp_proxy.Models
                 if (!req.Headers.Contains("SOAPAction"))
                 {
                     rsp_json.status = false;
-                    rsp_json.info = "soap action is missing in your header";
+                    rsp_json.info = "'SOAPAction' is missing in your header";
                     return rsp_json;
                 }
             }
@@ -39,7 +39,7 @@ namespace ais_erp_proxy.Models
                 if (content_type != "application/json")
                 {
                     rsp_json.status = false;
-                    rsp_json.info = "Invalid content type";
+                    rsp_json.info = "Invalid ContentType";
                     return rsp_json;
                 }
             }
