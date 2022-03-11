@@ -36,6 +36,7 @@ namespace ais_erp_proxy.Models
                     var response = client.GetAsync(data.endpoint).Result;
 
                     rsp.came_through = true;
+                    rsp.contenttype = data.contenttype;
                     rsp.response_status = response.StatusCode.ToString();
                     rsp.content = response.Content.ReadAsStringAsync().Result;
                 }
@@ -46,6 +47,7 @@ namespace ais_erp_proxy.Models
                     var response = client.SendAsync(requestMessage).Result;
 
                     rsp.came_through = true;
+                    rsp.contenttype = data.contenttype;
                     rsp.response_status = response.StatusCode.ToString();
                     rsp.content = response.Content.ReadAsStringAsync().Result;
                 }

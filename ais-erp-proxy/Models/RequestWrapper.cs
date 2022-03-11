@@ -13,12 +13,12 @@ namespace ais_erp_proxy.Models
                 ReceivedRequestData parsed_data = CustomRequsetInspector.CheckAndGetDataFromRequest(req);
                 if (!parsed_data.status)
                 {
-                    return req.CreateResponse<ReceivedRequestData>(HttpStatusCode.Ambiguous, parsed_data);
+                    return req.CreateResponse(HttpStatusCode.Ambiguous, parsed_data.info);
                 }
                 else
                 {
                     ReceivedResponseJson received_response = CustomRequestHandler.MakeRequest(parsed_data);
-                    return req.CreateResponse<ReceivedResponseJson>(HttpStatusCode.OK, received_response);
+                    return req.CreateResponse(HttpStatusCode.OK, received_response.content);
                 }
             }
             catch (Exception e)
